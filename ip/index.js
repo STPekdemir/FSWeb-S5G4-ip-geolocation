@@ -1,6 +1,7 @@
 //axios import buraya gelecek
-
 const { default: axios } = require("axios");
+
+//const { default: axios } = require("axios");
 
 var benimIP;
 
@@ -106,16 +107,14 @@ function cardFunc(data) {
 	
 	
 */
-const cards = document.querySelector(".cards");
-let returnData;
-axios
+const cards = document.querySelector("cards");
+/*axios
   .get("https://apis.ergineer.com/ipgeoapi/195.174.128.211")
   .then((response) => {
-    returnData = response.data;
-    cards.appendChild(cardFunc(returnData));
+    cards.appendChild(cardFunc(response.data));
     console.log(response.data);
   })
-  .catch((error) => console.log(error));
+  .catch((error) => console.log(error));*/
 
 /*
 	ADIM 5: Manuel olarak eklediğiniz IP adresini dinamiğe dönüştürün. 
@@ -124,5 +123,15 @@ axios
 	bilgisayarınızın IP adresini atayacaktır. 
 	Örnek dinamik URL kullanımı: var url = "https://apis.ergineer.com/ipgeoapi/"+benimIP; 
 */
+const adim5 = async function () {
+  await ipAdresimiAl();
+  axios
+    .get(`https://apis.ergineer.com/ipgeoapi/${benimIP}`)
+    .then((response) => {
+      cards.appendChild(cardFunc(response.data));
+    })
+    .catch((error) => console.log(error));
+};
+adim5();
 
 //kodlar buraya gelecek
